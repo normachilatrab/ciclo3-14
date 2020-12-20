@@ -8,8 +8,8 @@ describe('Articulos Endpoints', () => {
         request(app)
             .post('/api/usuario/login')
             .send({
-                email: 'usuario@gmail.com',
-                password: '12345',
+                email: 'prueba@gmail.com',
+                password: 'micontraseña',
 
             })
             .end((err, response) => {

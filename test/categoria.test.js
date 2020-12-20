@@ -8,8 +8,8 @@ describe('Categoria Endpoints', () => {
         request(app)
             .post('/api/usuario/login')
             .send({
-                email: 'usuario@gmail.com',
-                password: '12345',
+                email: 'prueba@gmail.com',
+                password: 'micontraseña',
 
             })
             .end((err, response) => {
@@ -43,7 +43,8 @@ describe('Categoria Endpoints', () => {
             .set('token', token)
             .send({
                 nombre: 'articulo_test_update',
-                descripcion: 'lorem limpsus update', 
+                descripcion: 'lorem limpsus update',
+                codigo: '22225',
                 id: 1
 
             })
@@ -56,6 +57,7 @@ describe('Categoria Endpoints', () => {
             .set('token', token)
             .send({
                 id: 1
+
             })
         expect(res.statusCode).toEqual(200)
     })
@@ -65,7 +67,7 @@ describe('Categoria Endpoints', () => {
             .put('/api/categoria/deactivate')
             .set('token', token)
             .send({
-                id: 1
+                id: 1,
             })
         expect(res.statusCode).toEqual(200)
     })
