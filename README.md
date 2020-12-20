@@ -12,12 +12,12 @@ proyecto semana 3 y semana 4 grupo 14
 npm install
 ```
 
-### Compiles and Serve
+### Compiles and Serve express
 ```
 npm start
 ```
 
-### Run your unit tests
+### Run unit tests
 ```
-npm run test
+npm test
 ```
