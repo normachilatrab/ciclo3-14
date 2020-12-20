@@ -1,13 +1,13 @@
 const request = require('supertest')
 const app = require('../index')
-
 describe('login Endpoints', () => {
     it('login user', async() => {
         const res = await request(app)
             .post('/api/usuario/login')
             .send({
-                email: 'usuario@gmail.com',
-                password: '12345'
+                email: 'prueba@gmail.com',
+                password: 'micontraseña',
+
             })
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('tokenReturn');
@@ -17,7 +17,7 @@ describe('login Endpoints', () => {
         const res = await request(app)
             .post('/api/usuario/login')
             .send({
-                email: 'usuario@gmail.com',
+                email: 'prueba@gmail.com',
                 password: 'micontraseñaa',
 
             })
@@ -28,7 +28,7 @@ describe('login Endpoints', () => {
         const res = await request(app)
             .post('/api/usuario/login')
             .send({
-                email: 'eluser@gmail.com',
+                email: 'prueb@gmail.com',
                 password: 'micontraseña',
 
             })

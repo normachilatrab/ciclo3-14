@@ -5,8 +5,8 @@ module.exports = {
         return queryInterface.bulkInsert('Usuarios', [{
             rol: 'Administrador',
             nombre: 'Norma',
-            password: '$2y$10$duHNuSP6nTtghvJycvbkhOwG5s7A5fBiMIc2VR7zYEIvBPM1d.vhi',
-            email: 'usuario@gmail.com',
+            password: '$2y$10$sdm6wNa9d/ykaavs3PMZJO/ba0uHztGFGmfEwGdlRHnshL1oqjJIW',
+            email: 'prueba@gmail.com',
             tipo_documento: 'CC',
             num_documento: '45678901',
             direccion: 'Medellin',

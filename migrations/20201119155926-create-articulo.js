@@ -21,12 +21,10 @@ module.exports = {
                 allowNull: false,
             },
             precio_venta: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
+                type: Sequelize.INTEGER
             },
             stock: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
+                type: Sequelize.INTEGER
             },
             estado: {
                 type: Sequelize.INTEGER,
