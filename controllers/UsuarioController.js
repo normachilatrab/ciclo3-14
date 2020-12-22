@@ -48,11 +48,69 @@ exports.login = async (req, res, next) => {
     }
 }
 
-exports.register = async (req, res, next) => {
+exports.add = async (req, res, next) => {
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 10);
         const user = await Usuario.create(req.body)
         res.status(200).json(user)
+    } catch (error) {
+        res.status(500).json({ 'error': error.message })
+        next()
+    }
+}
+
+exports.update = async (req, res, next) => {
+    try {
+        let pass = req.body.password;
+        const usuario = await Usuario.findOne({ where: { email: req.body.email } })
+
+        if(usuario) {
+            if (pass != usuario.password) {
+                req.body.password = await bcrypt.hashSync(req.body.password, 10);
+            }
+            usuario.nombre = req.body.nombre;
+            usuario.password = req.body.password;
+            usuario.estado = req.body.estado;
+            usuario.update();
+            res.status(200).json(usuario)
+        }
+        else {
+            res.status(404).json({ 'error': 'Usuario no existe' })
+        }        
+    } catch (error) {
+        res.status(500).json({ 'error': error.message })
+        next()
+    }
+}
+
+exports.activate = async (req, res, next) => {
+    try {
+        const usuario = await Usuario.findOne({ where: { id: req.body.id } })
+        if(usuario) {
+            usuario.estado = 1;
+            usuario.save();
+            res.status(200).json(usuario)
+        }
+        else {
+            res.status(404).json({ 'error': 'Usuario no existe' })
+        }        
+    } catch (error) {
+        res.status(500).json({ 'error': error.message })
+        next()
+    }
+}
+
+exports.deactivate = async (req, res, next) => {
+    try {
+        const usuario = await Usuario.findOne({ where: { id: req.body.id } })
+        if(usuario) {
+            usuario.estado = 0;
+            usuario.save();
+            res.status(200).json(usuario)
+        }
+        else {
+            res.status(404).json({ 'error': 'Usuario no existe' })
+        }        
     } catch (error) {
         res.status(500).json({ 'error': error.message })
         next()
