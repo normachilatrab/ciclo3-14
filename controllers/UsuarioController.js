@@ -61,10 +61,17 @@ exports.add = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
     try {
-        const usuario = await Usuario.findOne({ where: { id: req.body.id } })
+        let pass = req.body.password;
+        const usuario = await Usuario.findOne({ where: { email: req.body.email } })
+
         if(usuario) {
+            if (pass != usuario.password) {
+                req.body.password = await bcrypt.hashSync(req.body.password, 10);
+            }
             usuario.nombre = req.body.nombre;
-            usuario.save();
+            usuario.password = req.body.password;
+            usuario.estado = req.body.estado;
+            usuario.update();
             res.status(200).json(usuario)
         }
         else {
